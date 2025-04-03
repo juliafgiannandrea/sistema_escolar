@@ -1,6 +1,4 @@
 
-#Front end para inserção, consulta, deleção e atualização de dados no db_escola: 
-
 import streamlit as st 
 import pandas as pd
 from sqlalchemy import create_engine, text

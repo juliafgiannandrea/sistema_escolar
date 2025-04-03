@@ -1,5 +1,3 @@
-#Front end para inserção, consulta, deleção e atualização de dados no db_escola: 
-
 import streamlit as st 
 import pandas as pd
 from sqlalchemy import create_engine, text
@@ -10,8 +8,7 @@ import os
 from funcoes import subir_arquivo, cadastrar_endereco, cadastro_aluno, editar_aluno, cadastrar_nota, editar_nota, gerar_pdf
 
 
-load_dotenv() #infos para a conexão com o banco de dados: host, port, user, senha e database_name
-
+load_dotenv() #infos para a conexão com o banco de dados
 host = os.getenv("HOST")
 port = os.getenv("PORT")
 user = os.getenv("USER")
@@ -25,10 +22,9 @@ engine = create_engine(DATABASE_URL)
 
 #A partir das tabelas no banco de dados, crio dataframes 
 with engine.connect() as conn: 
-    df_alunos = pd.read_sql("SELECT * FROM tb_alunos", con=conn) # a partir da tb_alunos, crio um df_alunos 
+    df_alunos = pd.read_sql("SELECT * FROM tb_alunos", con=conn) #a partir da tb_alunos, crio um df_alunos 
     df_disciplinas = pd.read_sql("SELECT * FROM tb_disciplinas", con=conn) #crio df a partir de tb_disciplinas
     df_notas = pd.read_sql("SELECT * FROM tb_notas", con = conn)
-
 
 
 #Interface gráfica, onde vou chamar as funções: 
@@ -61,7 +57,6 @@ if menu == "Cadastro endereço":
     subir_arquivo(uploaded_file,tabela)
     
         
-
 elif menu == "Cadastro aluno":
     st.subheader("Cadastro de Aluno")
     nome_aluno = st.text_input("Cadastre o nome_aluno:")
@@ -173,15 +168,22 @@ elif menu == "Gerar pdf":
 
 
 
-
 ###FALTA: 
-#valor standard de nota cadastrada (o que está exibindo no streamlit como padrão)
-#Read me 
+
+#valor standard de nota cadastrada (o que está exibindo no streamlit como padrão) - fazer com que seja a nota atual
 #fazer sumir o "já existe nota cadastrada" após apertar botão de editar nota 
-#ajustes no front (visaulmente, deixar mais user friendly)
-#ajustes no pdf para formatação/ centralizar
-#fazer link com a tabela carros, para o usuário inserir o nome do carro, mas pegar o id desse carro para inserir/ editar na tabela alunos
-#fazer função de cadastro de carros 
+ 
 #comentar as funções - boas práticas de programação --> doc string 
 #tipo de variável do parâmetro de cada função 
+
 #edição de aluno -- pegar o id de outra forma? (que nem eu fix para cadastro de notas)
+
+#ajustes no pdf para formatação/ centralizar
+
+#fazer link com a tabela carros, para o usuário inserir o nome do carro, mas pegar o id desse carro para inserir/ editar na tabela alunos
+#fazer função de cadastro de carros 
+
+#ajustes no front (visualmente, deixar mais user friendly)
+
+#Read me 
+#criação de banco de dados - passo a passo no readme 
