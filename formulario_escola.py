@@ -89,6 +89,7 @@ elif menu == "Edição alunos":
     email = st.text_input("Digite o novo email do aluno:")
     cep = st.text_input("Digite o cep")
     carro_id = st.text_input("Digite o carro: ")
+
     if st.button("Editar"):
         editar_aluno(id, nome, email, cep, carro_id) 
         st.success("Informações do aluno atualizadas")
@@ -170,11 +171,14 @@ elif menu == "Gerar pdf":
 
 ###FALTA: 
 
+
+#comentar as funções - boas práticas de programação --> doc string 
+#tipo de variável do parâmetro de cada função 
+
+
 #valor standard de nota cadastrada (o que está exibindo no streamlit como padrão) - fazer com que seja a nota atual
 #fazer sumir o "já existe nota cadastrada" após apertar botão de editar nota 
  
-#comentar as funções - boas práticas de programação --> doc string 
-#tipo de variável do parâmetro de cada função 
 
 #edição de aluno -- pegar o id de outra forma? (que nem eu fix para cadastro de notas)
 
@@ -183,7 +187,8 @@ elif menu == "Gerar pdf":
 #fazer link com a tabela carros, para o usuário inserir o nome do carro, mas pegar o id desse carro para inserir/ editar na tabela alunos
 #fazer função de cadastro de carros 
 
-#ajustes no front (visualmente, deixar mais user friendly)
 
 #Read me 
+
+#ajustes no front (visualmente, deixar mais user friendly)
 #criação de banco de dados - passo a passo no readme 
