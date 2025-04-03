@@ -190,7 +190,7 @@ WHERE aluno_id = :aluno_id AND disciplina_id = :disciplina_id
 
 
 #6 Gerar pdf com aluno, disciplina e nota: GPT 
-def gerar_pdf(dados):
+def gerar_pdf(dados:pd.DataFrame):
     """
     Gera um PDF com as notas dos alunos.
 
@@ -203,23 +203,40 @@ def gerar_pdf(dados):
     O PDF contém um cabeçalho e uma tabela com os dados fornecidos.
     """
 
-    pdf = FPDF()
+    pdf = FPDF(orientation="P", unit="mm", format="A4")
     pdf.add_page()
     pdf.set_font("Arial", "B", 12)
 
-    pdf.cell(200, 10, "Notas dos Alunos", ln=True, align="C")
+    pdf.cell(190, 10, "Notas dos Alunos", ln=True, align="C")
     pdf.ln(10)
     pdf.set_font("Arial", "B", 10)
 
     colunas = dados.columns.tolist()
-    larguras = []
+    largura_total = 190  # Largura máxima da página (A4)
+    larguras = {
+        "aluno_id": 20,
+        "nome_aluno": 60,  
+        "nome_disciplina": 60,  
+        "nota": 20,
+    }
+
+    pdf.set_fill_color(200, 200, 200)
 
     for col in colunas:
-        pdf.cell(60, 10, col, 1)
+        pdf.cell(larguras.get(col, 40), 8, col, border=1, align="C", fill=True)
     pdf.ln()
-    pdf.set_font("Arial", "", 8)
+
+    pdf.set_font("Arial", "", 9)
+
     for _, row in dados.iterrows():
-        for item in row:
-            pdf.cell(60, 10, str(item), 1)
+        for col in dados.columns:
+            texto = str(row[col])
+
+            # Truncar texto longo para caber na célula
+            if pdf.get_string_width(texto) > larguras[col] - 2:  
+                texto = texto[:int(larguras[col] / 3)] + "..."  # Cortar texto e adicionar "..."
+
+            pdf.cell(larguras[col], 8, texto, border=1, align="C")
+        
         pdf.ln()
     return pdf.output(dest="S").encode("latin1")

@@ -120,10 +120,12 @@ elif menu == "Cadastro nota":
     nota_existe = ((df_notas['aluno_id'] == id_aluno) & (df_notas['disciplina_id'] == id_disciplina)).any() #any me retorna um boolean; 
     # & realiza a operação elemento a elemento gerando 1 única série booleana (para cada linha do df)
     if nota_existe:
-        st.warning("Já existe uma nota cadastrada para este aluno nesta disciplina.")        
+        warning_placeholder = st.empty()  #cria um espaço para a exibição do aviso 
+        warning_placeholder.warning("Já existe uma nota cadastrada para este aluno nesta disciplina.")        
         if st.button("Editar nota"):
             editar_nota(params)
             st.success("Nota editada com sucesso")
+            warning_placeholder.empty() #para parar de exibir o aviso de nota cadastrada após edição de nota 
 
     else:
         if st.button("Cadastrar nota"):
@@ -170,25 +172,9 @@ elif menu == "Gerar pdf":
 
 
 ###FALTA: 
-
-
-#comentar as funções - boas práticas de programação --> doc string 
-#tipo de variável do parâmetro de cada função 
-
-
-#valor standard de nota cadastrada (o que está exibindo no streamlit como padrão) - fazer com que seja a nota atual
-#fazer sumir o "já existe nota cadastrada" após apertar botão de editar nota 
- 
-
-#edição de aluno -- pegar o id de outra forma? (que nem eu fix para cadastro de notas)
-
-#ajustes no pdf para formatação/ centralizar
+#edição de aluno -- pegar o id de outra forma? (que nem eu fiz para cadastro de notas)
 
 #fazer link com a tabela carros, para o usuário inserir o nome do carro, mas pegar o id desse carro para inserir/ editar na tabela alunos
 #fazer função de cadastro de carros 
 
-
-#Read me 
-
-#ajustes no front (visualmente, deixar mais user friendly)
-#criação de banco de dados - passo a passo no readme 
+#se fizer as alterações acima, tem que alterar o read me 
