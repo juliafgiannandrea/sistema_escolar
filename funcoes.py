@@ -189,7 +189,7 @@ WHERE aluno_id = :aluno_id AND disciplina_id = :disciplina_id
 
 
 
-#6 Gerar pdf com aluno, disciplina e nota: GPT 
+#6 Gerar pdf com aluno, disciplina e nota: 
 def gerar_pdf(dados:pd.DataFrame):
     """
     Gera um PDF com as notas dos alunos.
