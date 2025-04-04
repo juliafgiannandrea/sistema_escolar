@@ -168,13 +168,3 @@ elif menu == "Gerar pdf":
         file_name="notas_alunos.pdf",
         mime="application/pdf"
     )
-
-
-
-###FALTA: 
-#edição de aluno -- pegar o id de outra forma? (que nem eu fiz para cadastro de notas)
-
-#fazer link com a tabela carros, para o usuário inserir o nome do carro, mas pegar o id desse carro para inserir/ editar na tabela alunos
-#fazer função de cadastro de carros 
-
-#se fizer as alterações acima, tem que alterar o read me 
